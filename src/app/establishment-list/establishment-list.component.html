@@ -1,0 +1,50 @@
+<div class="card mt-3">
+    <div class="card-header">
+      <div class="float-left">
+        <h4>Estabelecimento</h4>
+      </div>
+      <div class="float-right">
+        <button type="button" class="btn btn-primary" [routerLink]="['/establishment']">Novo Estabelecimento</button>
+  
+      </div>
+    </div>
+    <div class="card-body">
+      <table class="table table-hover" *ngIf="(establishment$ | async) as establishments; else loading">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nome</th>
+            <th>Endereço</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let establishment of establishments">
+            <td>{{ establishment.id }}</td>
+            <td>{{ establishment.name }}</td>
+            <td>{{ establishment.address }}</td>
+            
+            <td>
+              <span class="float-right">
+               <button class="btn btn-outline-warning mb-1 btn-sm" (click)="onEdite(establishment.id)">
+                  Editar
+                </button>
+  
+                <button class="btn btn-outline-danger mb-1 btn-sm" (click)="onDelete(establishment)">
+                  Excluir
+                </button>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  
+      <ng-template #loading>
+        <span>Carregando Estabelecimentos...</span>
+      </ng-template>
+  
+  
+    </div>
+  </div>
+  
+ 
+  

@@ -1,0 +1,33 @@
+<div class="card mt-3">
+  <div class="card-header">
+    <div class="float-left">
+      <h4>Equipes</h4>
+    </div>
+    <div class="float-right">
+      <button type="button" class="btn btn-primary" [routerLink]="['/work-team']">Nova Equipe</button>
+
+    </div>
+  </div>
+  <div class="card-body">
+    <table class="table table-hover" *ngIf="(workTeam$ | async) as workTeams; else loading">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Funcionário</th>
+          <th>Estabelecimento</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let workTeam of workTeams">
+          <td>{{ workTeam.id }}</td>
+          <td>{{ workTeam.employee.name }}</td>
+          <td>{{ workTeam.employee.establishment.name }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ng-template #loading>
+      <span>Carregando ...</span>
+    </ng-template>
+</div>
+</div>
